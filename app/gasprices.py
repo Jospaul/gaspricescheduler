@@ -120,8 +120,14 @@ def write_topg_gasprice(regular: float, premium: float):
 
 def insert_gasprice(storeid: str):
 
-    regular = fetch_gasprice(storeid, 'r', 'costco')
-    premium = fetch_gasprice(storeid, 'p', 'costco')
+    try:
+        regular = fetch_gasprice(storeid, 'r', 'costco')
+        premium = fetch_gasprice(storeid, 'p', 'costco')
+    except Exception as e:
+        print("Error occurred!, Costco call failed.")
+        regular = fetch_gasprice(storeid, 'r', 'gas')
+        premium = fetch_gasprice(storeid, 'p', 'gas')
+    
 
     write_topg_gasprice(float(regular), float(premium))
 
