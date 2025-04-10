@@ -8,3 +8,4 @@ INFO:root:Script ran at: 2025-02-01 19:29:37.349036
 INFO:root:Script ran at: 2025-02-01 23:29:37.870259
 INFO:root:Script ran at: 2025-02-02 03:29:40.071053
 INFO:root:Script ran at: 2025-02-02 07:29:40.565130
+ERROR:root:Error occurred: 'NoneType' object has no attribute 'get'
