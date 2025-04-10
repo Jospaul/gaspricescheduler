@@ -14,6 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy your script and other necessary files
 COPY app/gasprices.py ./  
 COPY app/scheduler.py ./
+COPY app/scraper.py ./
 
 
 # Activate the virtual environment

@@ -5,7 +5,7 @@ import json
 import psycopg2
 from datetime import datetime
 import pytz
-from app.scraper import scraper
+from scraper import scraper
 
 
 GASBUDDY_URL="https://www.gasbuddy.com/graphql"
