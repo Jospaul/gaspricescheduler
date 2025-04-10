@@ -5,6 +5,7 @@ import json
 import psycopg2
 from datetime import datetime
 import pytz
+from scraper import scraper
 
 
 GASBUDDY_URL="https://www.gasbuddy.com/graphql"
@@ -119,19 +120,22 @@ def write_topg_gasprice(regular: float, premium: float):
     conn.close()
 
 def insert_gasprice(storeid: str):
-
-    try:
-        regular = fetch_gasprice(storeid, 'r', 'costco')
-        premium = fetch_gasprice(storeid, 'p', 'costco')
-    except Exception as e:
-        print("Error occurred!, Costco call failed.")
-        regular = fetch_gasprice(storeid, 'r', 'gas')
-        premium = fetch_gasprice(storeid, 'p', 'gas')
+ 
+    prices = scraper()
+    regular = prices.get('Regular Gas','Not Found')
+    premium = prices.get('Premium Gas', 'Not Found')
+    # try:
+    #     regular = fetch_gasprice(storeid, 'r', 'costco')
+    #     premium = fetch_gasprice(storeid, 'p', 'costco')
+    # except Exception as e:
+    #     try:
+    #         print("Error occurred!, Costco call failed.")
+    #         regular = fetch_gasprice(storeid, 'r', 'gas')
+    #         premium = fetch_gasprice(storeid, 'p', 'gas')
+    #     except Exception as e:
+    #         prices = scraper()
+    #         regular = prices.get('Regular Gas','Not Found')
+    #         premium = prices.get('Premium Gas', 'Not Found')
     
 
     write_topg_gasprice(float(regular), float(premium))
-
-
-
-
-
